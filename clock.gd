@@ -10,7 +10,7 @@ static func time_between_dates(d1: ClockDate, d2: ClockDate) -> ClockTime:
   var day_diff: float = d1.month_day - d2.month_day
   var hour_diff: float = day_diff*24 - (d1.time.hours - d2.time.hours)
   var minute_diff: float = hour_diff*60 - (d1.time.minutes - d2.time.minutes)
-  var second_diff: float = minute_diff*60 - (d1.time.seconds - d2.time.seconds)
+  var second_diff: float = abs(minute_diff*60 - (d1.time.seconds - d2.time.seconds))
   
   var time = ClockTime.new()
   time.hours = floor(second_diff / 3600)

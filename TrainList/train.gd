@@ -7,6 +7,8 @@ var empty_train: bool
 
 func update() -> void:
   $"%Destination".text = destination
+  if empty_train:
+    $"%Destination".text += "****"
   $"%TimeToLeave".text = departure_time.time.as_string()
   
   var time_to_leave_text = ""
@@ -30,7 +32,7 @@ static func new_from_departure(departure: Departure) -> Train:
   var train: Train = Train.new()
   train.destination = departure.destination
   train.departure_time = Clock.new_date(departure.expected)
-  train.empty_train = false
+  train.empty_train = departure.empty_seats
   return train
 
 static func print(train: Train) -> void:

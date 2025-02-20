@@ -12,6 +12,7 @@ var stop_area: Dictionary
 var stop_point: Dictionary
 var line: Dictionary
 var deviations: Array
+var empty_seats: bool
 
 static func new_from_dictionary(dictionary: Dictionary) -> Departure:
   var departure = Departure.new()
