@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpresjs7kw1gk"]
+
+[ext_resource type="Script" path="res://TrainList/train.gd" id="1_3y3on"]
+[ext_resource type="Theme" uid="uid://dq6cpqawnpcau" path="res://TrainList/list_theme.tres" id="2_3xsfd"]
+[ext_resource type="StyleBox" uid="uid://eww0r7ol3fbu" path="res://TrainList/new_style_box_flat_round_left.tres" id="3_uy120"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvc4v"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.290196, 0.678431, 0.607843, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+
+[node name="Train" type="MarginContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3y3on")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Destination" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_3xsfd")
+theme_override_styles/normal = ExtResource("3_uy120")
+text = "teste"
+
+[node name="MinutesLeft" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_3xsfd")
+text = "teste"
+
+[node name="TimeToLeave" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_3xsfd")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gvc4v")
+text = "teste"
