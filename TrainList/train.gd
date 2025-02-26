@@ -9,24 +9,20 @@ func update() -> void:
   $"%Destination".text = destination
   if empty_train:
     $"%Destination".text += "****"
-  $"%TimeToLeave".text = departure_time.time.as_string()
+  $"%DepartureTime".text = "(" + departure_time.time.as_string().left(5) + ")"
   
   var time_to_leave_text = ""
   var time_to_leave = Clock.time_from_now(departure_time)
   if time_to_leave.hours == 0 and time_to_leave.minutes == 0:
     time_to_leave_text = "Nu"
   elif time_to_leave.hours == 0:
-    time_to_leave_text = str(time_to_leave.minutes) + " minute"
-    if time_to_leave.minutes > 1:
-      time_to_leave_text += "s"
+    time_to_leave_text = str(time_to_leave.minutes) + " min"
   else:
     time_to_leave_text = str(time_to_leave.hours) + " hour"
     if time_to_leave.hours > 1:
       time_to_leave_text += "s"
-    time_to_leave_text += " " + str(time_to_leave.minutes) + " minute"
-    if time_to_leave.minutes > 1:
-      time_to_leave_text += "s" 
-  $"%MinutesLeft".text = time_to_leave_text
+    time_to_leave_text += " " + str(time_to_leave.minutes) + " min"
+  $"%TimeToLeave".text = time_to_leave_text
 
 static func new_from_departure(departure: Departure) -> Train:
   var train: Train = Train.new()

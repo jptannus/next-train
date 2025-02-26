@@ -1,17 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpresjs7kw1gk"]
+[gd_scene load_steps=6 format=3 uid="uid://bpresjs7kw1gk"]
 
 [ext_resource type="Script" path="res://TrainList/train.gd" id="1_3y3on"]
-[ext_resource type="Theme" uid="uid://dq6cpqawnpcau" path="res://TrainList/list_theme.tres" id="2_3xsfd"]
-[ext_resource type="StyleBox" uid="uid://eww0r7ol3fbu" path="res://TrainList/new_style_box_flat_round_left.tres" id="3_uy120"]
+[ext_resource type="Texture2D" uid="uid://dtpdfs8em4rgv" path="res://Assets/departure_bg.png" id="2_jv2cp"]
+[ext_resource type="Theme" uid="uid://dju0uefain84b" path="res://TrainList/theme_v1.tres" id="3_o6pi2"]
+[ext_resource type="FontFile" uid="uid://bh13vxwiagiyu" path="res://Assets/LT_Kareoke/LTKaraoke-Regular.ttf" id="4_xmjlx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvc4v"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0.290196, 0.678431, 0.607843, 1)
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
+[sub_resource type="FontVariation" id="FontVariation_oxttf"]
+base_font = ExtResource("4_xmjlx")
+spacing_glyph = 2
 
 [node name="Train" type="MarginContainer"]
 anchors_preset = 14
@@ -24,27 +20,50 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3y3on")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 2
-size_flags_vertical = 4
+texture = ExtResource("2_jv2cp")
+region_rect = Rect2(18.4881, 19.1527, 385.024, 51.9378)
+patch_margin_left = 20
+patch_margin_top = 15
+patch_margin_right = 20
+patch_margin_bottom = 15
 
-[node name="Destination" type="Label" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Destination" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_o6pi2")
+theme_override_fonts/font = SubResource("FontVariation_oxttf")
+text = "Farsta Strand"
+
+[node name="EmptySpace" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("2_3xsfd")
-theme_override_styles/normal = ExtResource("3_uy120")
-text = "teste"
 
-[node name="MinutesLeft" type="Label" parent="HBoxContainer"]
+[node name="TimeToLeave" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_3xsfd")
-text = "teste"
+size_flags_horizontal = 8
+theme = ExtResource("3_o6pi2")
+theme_override_font_sizes/font_size = 42
+text = "15 min"
 
-[node name="TimeToLeave" type="Label" parent="HBoxContainer"]
+[node name="DepartureTime" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_3xsfd")
-theme_override_styles/normal = SubResource("StyleBoxFlat_gvc4v")
-text = "teste"
+size_flags_horizontal = 8
+theme = ExtResource("3_o6pi2")
+theme_override_colors/font_color = Color(0.137255, 0.290196, 0.207843, 1)
+theme_override_font_sizes/font_size = 24
+text = "(14:45)"
