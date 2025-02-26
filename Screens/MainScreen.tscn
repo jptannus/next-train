@@ -1,6 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://73mm1jtsxsqf"]
+[gd_scene load_steps=9 format=3 uid="uid://73mm1jtsxsqf"]
 
+[ext_resource type="Texture2D" uid="uid://clhuvepfp2170" path="res://Assets/station_bg.png" id="1_86ldd"]
 [ext_resource type="PackedScene" uid="uid://chkflos4noivl" path="res://TrainList/TrainList.tscn" id="1_gk8t5"]
+[ext_resource type="Theme" uid="uid://dju0uefain84b" path="res://TrainList/theme_v1.tres" id="1_lnwna"]
+[ext_resource type="Texture2D" uid="uid://dpkjxoi17d2y6" path="res://Assets/app_header_bg.png" id="1_o08xj"]
+[ext_resource type="Script" path="res://Screens/main_screen.gd" id="1_wpcb7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ddx3h"]
+content_margin_left = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 5.0
+bg_color = Color(0.780392, 0.870588, 0.823529, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ypcu1"]
+content_margin_top = 15.0
+texture = ExtResource("1_o08xj")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_br6he"]
+content_margin_top = 20.0
+texture = ExtResource("1_86ldd")
+texture_margin_left = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -9,6 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_wpcb7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -21,13 +47,48 @@ color = Color(0.321569, 0.447059, 0.384314, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Header" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AppHeader" type="PanelContainer" parent="VBoxContainer/Header/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ddx3h")
+
+[node name="AppHeaderPanel" type="PanelContainer" parent="VBoxContainer/Header/VBoxContainer/AppHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ypcu1")
+
+[node name="AppName" type="Label" parent="VBoxContainer/Header/VBoxContainer/AppHeader"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_lnwna")
+theme_override_colors/font_color = Color(0.788235, 0.905882, 0.831373, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 22
+text = "Next Train"
+horizontal_alignment = 1
+
+[node name="StationHeader" type="PanelContainer" parent="VBoxContainer/Header/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_br6he")
+
+[node name="Station" type="Label" parent="VBoxContainer/Header/VBoxContainer/StationHeader"]
+layout_mode = 2
+theme = ExtResource("1_lnwna")
+text = "Vällingby -> Center"
+horizontal_alignment = 1
+
 [node name="TrainList" parent="VBoxContainer" instance=ExtResource("1_gk8t5")]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 6
